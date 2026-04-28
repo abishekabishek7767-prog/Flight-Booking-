@@ -1,0 +1,288 @@
+:root {
+  /* Color Palette - Deep Midnight & Gold */
+  --color-bg-primary: #050b14;
+  --color-bg-secondary: #0a1120;
+  --color-text-main: #ffffff;
+  --color-text-muted: #8b9bb4;
+  --color-accent: #d4af37; /* Metallic Gold */
+  --color-accent-hover: #f1c40f;
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(3, 7, 15, 0.88);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  
+  /* Utilities */
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.2s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-bg-primary);
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 50px 50px, 50px 50px;
+  color: var(--color-text-main);
+  overflow-x: hidden;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Text Gradient Utility */
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Glass panel utility */
+.glass-panel {
+  background: rgba(10, 17, 32, 0.4);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* Animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Decorative Background Elements */
+.bg-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-accent), transparent 93%) 0%, transparent 70%);
+  filter: blur(80px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Scroll Animations Base */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: var(--transition-smooth);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: var(--transition-smooth);
+}
+
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: var(--transition-smooth);
+}
+
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Footer Link Hover Effects */
+.footer-link {
+  transition: var(--transition-smooth);
+  text-decoration: none;
+  color: var(--color-text-muted);
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.footer-link:hover {
+  color: var(--color-accent);
+  text-shadow: 0 0 10px color-mix(in srgb, var(--color-accent), transparent 50%);
+  transform: translateX(5px);
+}
+
+.social-icon-link {
+  transition: var(--transition-fast);
+  color: var(--color-text-muted);
+}
+
+.social-icon-link:hover {
+  color: var(--color-accent);
+  transform: translateY(-3px) scale(1.1);
+  filter: drop-shadow(0 0 8px var(--color-accent));
+}
+
+/* Scale up for hero widgets */
+.scale-up {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: var(--transition-smooth);
+}
+
+.scale-up.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  border: none;
+  outline: none;
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-bg-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px color-mix(in srgb, var(--color-accent), transparent 50%);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-text-main);
+  border: 1px solid color-mix(in srgb, var(--color-accent), var(--glass-border) 40%);
+}
+
+.btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: var(--color-text-main);
+}
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-bg-secondary);
+  border-radius: 4px;
+  border: 1px solid color-mix(in srgb, var(--color-accent), var(--glass-border) 40%);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Float Animation Utility */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 5px var(--color-accent); }
+  50% { box-shadow: 0 0 25px var(--color-accent); }
+  100% { box-shadow: 0 0 5px var(--color-accent); }
+}
+
+.glow-animation {
+  animation: pulse-glow 3s infinite;
+}
+
+/* Calendar Input Styling */
+.calendar-input::-webkit-calendar-picker-indicator {
+  filter: invert(1) hue-rotate(180deg) brightness(1.5);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.calendar-input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.calendar-input {
+  color-scheme: dark; /* Ensures the calendar popup is dark on supporting browsers */
+}
+
+/* Side Scroll Plane Styles */
+.side-scroll-container {
+  position: fixed;
+  right: 40px;
+  top: 120px;
+  bottom: 120px;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, var(--glass-border), transparent);
+  z-index: 50;
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .side-scroll-container {
+    display: block;
+  }
+}
